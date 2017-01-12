@@ -1,6 +1,6 @@
-from PySide.QtCore import *
-from PySide.QtGui import *
-from PySide.QtUiTools import *
+from PySide.QtCore import QFile
+from PySide.QtGui import QWidget, QApplication
+from PySide.QtUiTools import QUiLoader
 import sys
 
 
@@ -22,5 +22,4 @@ class ExampleWidget(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = ExampleWidget("example.ui")
-
     sys.exit(app.exec_())
