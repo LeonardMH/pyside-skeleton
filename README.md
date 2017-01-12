@@ -8,35 +8,39 @@ designed in Qt Designer. This is the easiest way to use Qt.
 The essential code is show below (and contained in example.py).
 
 ```python
-import sys
-from PySide.QtCore import *
-from PySide.QtGui import *
-from PySide.QtUiTools import *
+from PySide.QtCore import QFile
+from PySide.QtGui import QWidget, QApplication
+from PySide.QtUiTools import QUiLoader
 
 
-def load_ui_widget(filename, parent=None):
+def load_ui_widget(filename, parent):
     loader = QUiLoader()
     uifile = QFile(filename)
     uifile.open(QFile.ReadOnly)
-    ui = loader.load(uifile, parent)
+    loader.load(uifile, parent)
     uifile.close()
 
-    return ui
+
+class ExampleApplication(QApplication):
+    def __init__(self, **kwargs):
+        super(ExampleApplication, self).__init__([], **kwargs)
+
+    def start(self):
+        self.exec_()
 
 
 class ExampleWidget(QWidget):
     def __init__(self, filepath):
         super(ExampleWidget, self).__init__()
-        self.ui = load_ui_widget(filepath)
+        load_ui_widget("example.ui", parent=self)
+        self.setWindowTitle("PySide Example")
+        self.show()
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-
+    app = ExampleApplication()
     widget = ExampleWidget("example.ui")
-    widget.ui.show()
-
-    sys.exit(app.exec_())
+    app.start()
 ```
 
 # Screenshots
