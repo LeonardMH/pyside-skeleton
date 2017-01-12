@@ -8,9 +8,9 @@ designed in Qt Designer. This is the easiest way to use Qt.
 The essential code is show below (and contained in example.py).
 
 ```python
-from PySide.QtCore import QFile
 from PySide.QtGui import QWidget, QApplication
 from PySide.QtUiTools import QUiLoader
+from PySide.QtCore import QFile
 
 
 def load_ui_widget(filename, parent):
@@ -48,4 +48,3 @@ if __name__ == "__main__":
 Here's what it looks like on Windows 10:
 
 ![pyside-barebones on Windows 10](/screenshots/windows10.png)
-
